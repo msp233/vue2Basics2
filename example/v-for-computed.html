@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+    <title>排序 computed</title>
+</head>
+<body>
+<h3>排序 实例： computed属性</h3>
+<hr>
+<div id="app">
+    message数据：
+    {{message}}
+    <hr>
+    computed属性翻转message后数据：
+    {{reversedMessage}}
+    <hr>
+    items数据：
+    <ul v-for="item in sortItems">
+        <li>{{item}}</li>
+    </ul>
+    <hr>
+    computed属性排序items后数据（sort()方法排序存在bug）：
+    <ul v-for="item in sortItems">
+        <li>{{item}}</li>
+    </ul>
+    <hr>
+    computed属性调用自定义排序方法处理items2的数据（sort()方法排序存在bug）：
+    <ul v-for="item in sortItems2">
+        <li>{{item}}</li>
+    </ul>
+    <hr>
+    对象循环输出：
+    <ul>
+        <li v-for="(student,index) in students">
+            {{index}}：{{student.name}} - {{student.age}}
+        </li>
+    </ul>
+    <hr>
+</div>
+
+
+<script type="text/javascript">
+    var app=new Vue({
+        el:'#app',
+        data:{
+            items:[12,23,76,77,96,66,5],
+            items2:[12,23,76,77,96,66,5],
+            message: 'Hello',
+            students:[
+                {name:'jspang',age:32},
+                {name:'Panda',age:30},
+                {name:'PanPan',age:21},
+                {name:'King',age:45}
+            ]
+        },
+        computed:{
+            reversedMessage:function () {
+                return this.message.split('').reverse().join('')
+            },
+            sortItems:function () {
+                return this.items.sort();
+            },
+            sortItems2:function () {
+                this.sortNumber();
+            },
+        },
+        methods:{
+            sortNumber:function () {
+                console.log('调用自定义方法');
+            },
+        }
+    })
+</script>
+</body>
+</html>
+<!--
+<div id="app">
+    message数据：
+    {{message}}
+    <hr>
+    computed属性翻转后数据：
+    {{reversedMessage}}
+    <hr>
+</div>
+
+
+<script type="text/javascript">
+    var app=new Vue({
+        el:'#app',
+        data:{
+            message: 'Hello'
+        },
+        computed:{
+            reversedMessage:function () {
+                return this.message.split('').reverse().join('')
+            }
+        }
+    })
+</script>
+-->

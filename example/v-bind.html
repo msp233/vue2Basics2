@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+    <title>v-bind指令</title>
+</head>
+<body>
+<h3>v-bind指令</h3>
+<hr>
+<div id="app">
+    v-bind完全形式:(v-bind:src="")
+    <br>
+    <img v-bind:src="imgSrc" alt=""><hr>
+    v-bind缩写形式:(:href="")
+    <br>
+    <a :href="homePage" target="_blank">我的主页</a>
+    <hr>
+    <div :class="className">1、绑定Class</div>
+    <div :class="{classA:isOk}">2、绑定Class中的判断</div>
+    <div :class="[classA,classB]">3、绑定Class中的数组</div>
+    <div :class="isOk?classA:classB">4、绑定Class中的三元运算符</div>
+    <hr>
+    <div>
+        <input type="checkbox" id="isOk" v-model="isOk">
+        <label for="isOk">isOk={{isOk}}</label>
+    </div>
+    <hr>
+    <div :style="{color:red,fontSize:font}">5、绑定Style</div>
+    <div :style="styleObject">6、对象绑定Style </div>
+</div>
+
+<script type="text/javascript">
+    var app=new Vue({
+        el:'#app',
+        data:{
+            imgSrc:'../status/img/键值表.jpg',
+            homePage:'http://www.maoshiping.top',
+            className:'classA',
+            isOk:false,
+            classA:'classA',
+            classB:'classB',
+            red:'#6789ab',
+            font:'24px',
+            styleObject:{
+                color:'green',
+                fontSize:'36px',
+            }
+        },
+        computed:{
+        },
+        methods:{
+        }
+    })
+</script>
+<style>
+    .classA{
+        color:red;
+    }
+    .classB{
+        font-size: 150%;
+    }
+</style>
+</body>
+</html>
